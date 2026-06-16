@@ -592,26 +592,6 @@ async function spawnNewFurniture(type: string, x: number = 0, z: number = 0) {
   }
 }
 
-// Initial Population (bypassing history for intro)
-async function initPopulate() {
-    const items = ['sofa', 'table', 'plant', 'lamp'];
-    const positions = [[0,-2], [0,2], [4,-4], [3,-1]];
-    
-    for (let i = 0; i < items.length; i++) {
-        const type = items[i];
-        const s = await FurnitureDatabase.spawn(type); 
-        s.position.set(positions[i][0], s.userData.originalY||0, positions[i][1]);
-        s.userData.id = Math.random().toString(36).substr(2, 9);
-        const properName = type.charAt(0).toUpperCase() + type.slice(1);
-        s.userData.name = `${properName} 1`;
-        s.userData.type = type;
-        
-        scene.add(s); 
-        draggableObjects.push(s);
-        allFurniture.push(s);
-    }
-    updateLayersUI();
-}
 // initPopulate(); // Disabled, let start screen handle it
 
 
